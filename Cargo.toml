@@ -1,0 +1,35 @@
+[package]
+name = "sqlx-migrate-validate"
+version = "0.1.0"
+edition = "2021"
+description = "Validate your database sqlx migration state"
+documentation = "https://github.com/tobikris/sqlx-migrate-validate"
+homepage = "https://github.com/tobikris/sqlx-migrate-validate"
+repository = "https://github.com/tobikris/sqlx-migrate-validate"
+readme = "README.md"
+license = "MIT"
+
+[lib]
+path = "src/lib.rs"
+
+[features]
+default = [
+    "postgres",
+    "sqlite",
+    "sqlx/runtime-tokio-rustls",
+    "sqlx/macros",
+    "sqlx/migrate",
+]
+postgres = ["sqlx/postgres"]
+sqlite = ["sqlx/sqlite"]
+
+[dependencies]
+sqlx = { version = "0.6", default-features = false }
+sqlx-core = "0.6"
+sqlx-rt = "0.6"
+thiserror = "1.0.39"
+async-trait = "0.1.66"
+
+[dev-dependencies]
+anyhow = "1.0.51"
+tokio = { version = "1", features = ["macros", "rt"] }
